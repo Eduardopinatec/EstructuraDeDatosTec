@@ -45,6 +45,10 @@ class Libreria {
         prestado[numLibro]=0;
         cout<<"Regreso actualizado"<<endl;
     }
+    ~Libreria(){
+        delete[] libros;
+        delete[] prestado;
+    }
 };
 
 int main (){
