@@ -79,7 +79,7 @@ class BubbleSort: public Sort<T>{
 
 int main(){
 	int size=5;
-	int a[size]={5,4,3,2,1};
+	int a[size]={9,5,3,11,20,1,13};
 	SelectionSort<int> s;
 	s.imprimirArreglo(a, size);
 	s.sort(a, size);
