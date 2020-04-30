@@ -21,9 +21,8 @@ class Nodo{
 
 template <class T>
 class LinkedList{
-	private:
-		Nodo<T> *root;
 	public:
+		Nodo<T> *root;
 		LinkedList(){
 			root=NULL;
 		}
@@ -52,6 +51,10 @@ class LinkedList{
 				temp=temp->next;
 			}
 			cout<<endl;
+		}
+		T imprimirTurno (){
+			Nodo<T> *temp = root;
+			return temp->value;
 		}
 		
 		void insert(Nodo<T> *toAdd, int pos){
