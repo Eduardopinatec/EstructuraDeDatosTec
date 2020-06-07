@@ -8,9 +8,7 @@
 #include <unordered_set>
 #include <map>
 
-
 using namespace std;
-
 
 struct Data{
     string user1;
@@ -74,13 +72,13 @@ class Set1{
             }
         }
         //Print the map with there followers
-        for (auto& x: map){
+        /*for (auto& x: map){
             cout<<x.first<<"\t\t";
             for (int i = 0; i < map[x.first].size(); i++){
                 cout<<map[x.first][i]<<"\t";
             }
             cout<<endl;
-        }
+        }*/
     }
     void print(){
         int count = 0;
@@ -124,6 +122,7 @@ class Set2{
 
 };//Agrega aqui los datos y metodos para resolver los problemas del set 2
 class Set3 {
+    public:
     Set1 dataSet1;
     //Making the tree of followers, share and coments
     std::map <string, int> followers;
@@ -145,7 +144,6 @@ class Set3 {
                     }
                 }
             }
-            cout<<"count: "<<count<<endl;
             //Addind the user and the id (number of accounts that the user follows).
             followers.insert(make_pair(i,count));
         }
@@ -164,22 +162,28 @@ class Set3 {
             compartir.insert(make_pair(i, count));
         }
         //Constructor for the tree of coments
-        //Lopping into the 
+        //Lopping into the list of users
         for (const auto& i : dataSet1.list){
             int count = 0;
+            //Lopping into the information that the .txt gave us to see what tyoe if interaction the user have. 
             for (auto j : interacciones){
+                //Searching for the user id and for the coment interaction
                 if (j.user1.compare(i)==0 && j.inter==1){
                     count++;
                 }
             }
+            //Adding the user and id (number of comments)
             comentar.insert(make_pair(i, count));
         }
     }
+    //Part 3.1
+    //Method for printing all the information that the followers tree has.
     void printID(){
         for (auto &i : followers){
             cout<<i.first<<" Follows:"<<i.second<<endl;
         }
     }
+    //Searching for the user that follows the must.
     void mayorSeguidor(){
         int mayor = 0;
         for (auto &i : followers){
@@ -193,16 +197,14 @@ class Set3 {
             }
         }
     }
-    //////////////////////////////////////////////////////////////////
-    
-    void addComp(){
-
-    }
+    //Part 3.2
+    //Method for printing all the information that the share tree has.
     void printT (){
         for (auto &i : compartir){
             cout<<i.first<<" compartio: "<<i.second<<endl;
         }
     }
+    //Searching for the user that shares the must.
     void amplificador (){
         int mayor = 0;
         for (auto &i : compartir){
@@ -216,12 +218,14 @@ class Set3 {
             }
         }
     }
-    /////////////////////////////////////////////////////////
+    //Part 3.3
+    //Method for printing all the information that the coment tree has.
     void printC (){
         for (auto &i : comentar){
             cout<<i.first<<"comento: "<<i.second<<endl;
         }
     }
+    //Searching for the person that coments the least 
     void callado(){
         int menor = 1000;
         for (auto &i : comentar){
@@ -248,23 +252,17 @@ int main(){
     //En la misma carpeta: file.txt
     string path="file.txt";
     leerData(path);
-    for(auto i: interacciones){
-        cout<<i.user1<<":"<<i.inter<<":"<<i.user2<<endl;
-    }
+    // for(auto i: interacciones){
+    //     cout<<i.user1<<":"<<i.inter<<":"<<i.user2<<endl;
+    // }
     Set1 set1;
-    Set3 <int> set3;
+    Set3 set3;
     // set1.print();
     // set1.usuarioExistente("Adultin12");
-    set1.insertingData();
-    // set1.esSeguidor("Adultin12", "lorenzo");
-    set1.addId();
-    set1.printID();
-    set1.mayorSeguidor();
-    set1.addComp();
-    set1.printT();
-    set1.amplificador();
-    set1.addComent();
-    set1.printC();
-    set1.callado();
+    set1.usuarioExistente("Usuario");
+    set1.esSeguidor("lalo", "lorenzo");
+    set3.mayorSeguidor();
+    set3.amplificador();
+    set3.callado();
     return 0;
 }
