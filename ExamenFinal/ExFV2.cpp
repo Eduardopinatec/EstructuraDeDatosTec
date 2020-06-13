@@ -58,29 +58,68 @@ class Set1{
             list.insert(i.user1);
             list.insert(i.user2);
         }
-        for (auto i: interacciones){
-            //Seeing what type of interaction
+        for (auto i : interacciones){
+            int existe = 0;
             if (i.inter==0){
                 //It is a share type, so we add user1 into the followers list of user2
                 map[i.user2];
-                map[i.user2].push_back(i.user1);
+                for (int j = 0; j < map[i.user2].size(); j++){
+                    if (map[i.user2][j].compare(i.user1)==0){
+                        existe = 1;
+                        break;
+                    }
+                }
+                if (existe == 0){
+                    map[i.user2].push_back(i.user1);
+                }
             }
             else{
-                //It is a comment type, so they follow each other
                 map[i.user1];
-                map[i.user1].push_back(i.user2);
                 map[i.user2];
-                map[i.user2].push_back(i.user1);
+                for (int j = 0; j < map[i.user1].size(); j++){
+                    if (map[i.user1][j].compare(i.user2)==0){
+                        existe = 1;
+                        break;
+                    }
+                }
+                if (existe == 0){
+                    map[i.user1].push_back(i.user2);
+                }
+                existe = 0;
+                for (int j = 0; j < map[i.user2].size(); j++){
+                    if (map[i.user2][j].compare(i.user1)==0){
+                        existe = 1;
+                        break;
+                    }
+                }
+                if (existe == 0){
+                    map[i.user2].push_back(i.user1);
+                }
             }
         }
+        // for (auto i: interacciones){
+        //     //Seeing what type of interaction
+        //     if (i.inter==0){
+        //         //It is a share type, so we add user1 into the followers list of user2
+        //         map[i.user2];
+        //         map[i.user2].push_back(i.user1);
+        //     }
+        //     else{
+        //         //It is a comment type, so they follow each other
+        //         map[i.user1];
+        //         map[i.user1].push_back(i.user2);
+        //         map[i.user2];
+        //         map[i.user2].push_back(i.user1);
+        //     }
+        // }
         //Print the map with there followers
-        for (auto& x: map){
-            cout<<x.first<<"\t\t";
-            for (int i = 0; i < map[x.first].size(); i++){
-                cout<<map[x.first][i]<<"\t";
-            }
-            cout<<endl;
-        }
+        // for (auto& x: map){
+        //     cout<<x.first<<"\t\t";
+        //     for (int i = 0; i < map[x.first].size(); i++){
+        //         cout<<map[x.first][i]<<"\t";
+        //     }
+        //     cout<<endl;
+        // }
     }
     void print(){
         int count = 0;
@@ -365,10 +404,10 @@ class Set4{
         for (int i = 0; i < data.map[userName].size(); i++){
             amigos.insert(data.map[userName][i]);
         }
-        for (const auto &i : amigos){
-            cout<<i<<", ";
-        }
-        cout<<endl;
+        // for (const auto &i : amigos){
+        //     cout<<i<<", ";
+        // }
+        // cout<<endl;
         cout<<"List of friends of the user "<<userName<<": ";
         for (const auto& x : amigos){
             for (int i = 0; i < data.map[x].size(); i++){
@@ -423,8 +462,8 @@ class Set4{
             cout<<endl;
             double size1 = (double)follow.size();//checar si, si va el -1
             double size2 = (double)followers.size();
-            cout<<followers.size()<<endl;
-            cout<<follow.size()<<endl;
+            // cout<<followers.size()<<endl;
+            // cout<<follow.size()<<endl;
 
             double radio = size2/size1;
             cout<<"Radio: "<<radio<<endl;
